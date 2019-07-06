@@ -35,15 +35,15 @@ describe('server.js', () => {
   })
 
   describe('POST /games', () => {
-    it('should return status 200', async () => {
+    it('should return status 201', async () => {
       const games = [
         { id: 1, title: 'Mortal Kombat', genre: 'Arcade', releaseYear: 1999},
         { id: 2, title: 'Tekken', genre: 'Arcade', releaseYear: 2000}
       ]
       return request(server)
-      .post('/games').insert(games)
+      await db('games').insert(games)
       const res = await request(server).post('/games')
-      expect(res.body).toEqual(games)
+      expect(res.status).toEqual(201)
     })
   })
 })

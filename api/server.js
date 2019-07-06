@@ -26,7 +26,7 @@ server.post('/games', (req, res) => {
     const newGame = db.insert(req.body)
       .then(newGame => {
         if(newGame) {
-        res.status(200).json(newGame)
+        res.status(201).json(newGame)
       } else {
         res.status(422).json({ message: 'missing title and genre'})
       }
